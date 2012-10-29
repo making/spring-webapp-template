@@ -10,7 +10,6 @@ import am.ik.template.domain.model.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-    @Query("SELECT x FROM User x WHERE x.id = :id AND x.name IS NOT NULL")
     @Override
     User findOne(@Param("id")
     Integer id);
