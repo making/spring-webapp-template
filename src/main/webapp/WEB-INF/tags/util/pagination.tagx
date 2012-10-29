@@ -1,0 +1,67 @@
+<jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core"
+  xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+  xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+  <jsp:output omit-xml-declaration="yes" />
+
+  <jsp:directive.attribute name="page"
+    type="org.springframework.data.domain.Page" required="true"
+    rtexprvalue="true" />
+
+  <c:set var="currentIndex" value="${page.number + 1}" />
+  <c:choose>
+    <c:when test="${currentIndex gt 5}">
+      <c:set var="beginIndex" value="${currentIndex - 5}" />
+    </c:when>
+    <c:otherwise>
+      <c:set var="beginIndex" value="1" />
+    </c:otherwise>
+  </c:choose>
+  <c:choose>
+    <c:when test="${beginIndex lt page.totalPages - 10}">
+      <c:set var="endIndex" value="${beginIndex + 10}" />
+    </c:when>
+    <c:otherwise>
+      <c:set var="endIndex" value="${page.totalPages}" />
+    </c:otherwise>
+  </c:choose>
+
+  <c:url var="firstUrl" value="?page.page=1" />
+  <c:url var="lastUrl" value="?page.page=${page.totalPages}" />
+  <c:url var="prevUrl" value="?page.page=${currentIndex - 1}" />
+  <c:url var="nextUrl" value="?page.page=${currentIndex + 1}" />
+
+  <ul>
+    <c:choose>
+      <c:when test="${page.number == 0}">
+        <li class="disabled"><a href="#">&lt;&lt;</a></li>
+        <li class="disabled"><a href="#">&lt;</a></li>
+      </c:when>
+      <c:otherwise>
+        <li><a href="${firstUrl}">&lt;&lt;</a></li>
+        <li><a href="${prevUrl}">&lt;</a></li>
+      </c:otherwise>
+    </c:choose>
+    <c:forEach var="i" begin="${beginIndex}" end="${endIndex}">
+      <c:url var="pageUrl" value="?page.page=${i}" />
+      <c:choose>
+        <c:when test="${i == currentIndex}">
+          <li class="active"><a href="${pageUrl}"><c:out
+                value="${i}" /></a></li>
+        </c:when>
+        <c:otherwise>
+          <li><a href="${pageUrl}"><c:out value="${i}" /></a></li>
+        </c:otherwise>
+      </c:choose>
+    </c:forEach>
+    <c:choose>
+      <c:when test="${currentIndex == page.totalPages}">
+        <li class="disabled"><a href="#">&gt;</a></li>
+        <li class="disabled"><a href="#">&gt;&gt;</a></li>
+      </c:when>
+      <c:otherwise>
+        <li><a href="${nextUrl}">&gt;</a></li>
+        <li><a href="${lastUrl}">&gt;&gt;</a></li>
+      </c:otherwise>
+    </c:choose>
+  </ul>
+</jsp:root>

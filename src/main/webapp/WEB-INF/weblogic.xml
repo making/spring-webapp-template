@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weblogic-web-app xmlns="http://xmlns.oracle.com/weblogic/weblogic-web-app">
+    <!-- CAUTION -->
+    <!-- weblogic.xml is only for Weblogic application server. -->
+    <!-- If you use other application server (ex. tomcat), -->
+    <!-- you shuld delete this file. -->
+
+    <!-- <context-root>foo_web</context-root> -->
+
+    <session-descriptor>
+        <url-rewriting-enabled>false</url-rewriting-enabled>
+    </session-descriptor>
+
+    <container-descriptor>
+        <prefer-web-inf-classes>true</prefer-web-inf-classes>
+    </container-descriptor>
+
+</weblogic-web-app>

@@ -1,0 +1,13 @@
+log
+target
+.settings
+.classpath
+.project
+.springBeans
+src/main/webapp/upload/*
+message
+mecab-ipadic*
+*~
+.git
+.idea
+.DS_Store
