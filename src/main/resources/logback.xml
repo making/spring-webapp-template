@@ -25,7 +25,7 @@
     </appender>
 
     <!-- Application Loggers -->
-    <logger name="am.ik.template">
+    <logger name="xxxx.yyyy.zzzz">
         <level value="debug" />
     </logger>
 
