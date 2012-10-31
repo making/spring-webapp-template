@@ -32,7 +32,7 @@ public class UserFacadeImpl implements UserFacade {
     @Override
     public void update(UserUpdateForm form) {
         User user = userService.findOne(form.getId());
-        BeanUtils.copyProperties(form, user, new String[] { "password" });
+        BeanUtils.copyProperties(form, user);
         user.setPassword(passwordEncoder.encodePassword(form.getPassword(),
                 form.getName()));
         userService.save(user);

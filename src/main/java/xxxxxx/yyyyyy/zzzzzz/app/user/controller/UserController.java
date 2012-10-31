@@ -75,7 +75,7 @@ public class UserController {
     public String updateForm(@RequestParam("id") Integer id,
             UserUpdateForm form, Model model) {
         User user = userService.findOne(id);
-        BeanUtils.copyProperties(user, form);
+        BeanUtils.copyProperties(user, form, new String[] { "password" });
 
         model.addAttribute(user);
         return "user/updateForm";
