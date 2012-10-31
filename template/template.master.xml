@@ -2,7 +2,7 @@
   <descriptor id="xxxx.yyyy.zzzz"
 	      name="Spring Template Web Application"
 	      kind="template"
-	      version="1.0.0">
+	      version="${version}">
     <description>
       Creates a new Spring Template Web Application Project using Spring MVC and Spring Data
     </description>

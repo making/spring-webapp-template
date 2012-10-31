@@ -1,8 +1,9 @@
 #!/bin/sh
-VERSION=1.0.0
+VERSION=1.0.0-`date +%Y%m%d%H%M%S`
 BASE=`pwd`
 PROJECT=spring-webapp-template-$VERSION
 TMPLNAME=template
+rm -f *.zip
 rm -rf $PROJECT
 
 mkdir -p $PROJECT
@@ -21,15 +22,17 @@ zip -qr $TMPLNAME.zip $TMPLNAME/*
 rm -rf $TMPLNAME
 
 cd $BASE
-pwd
 
 echo "copy configurations"
-cp template.xml $PROJECT
+sed -e s/\$\{version\}/$VERSION/ template.master.xml > $PROJECT/template.xml
 cp wizard.json $PROJECT
 
 echo "zip project"
 zip -qr $PROJECT.zip $PROJECT
 
+echo "update descriptors.xml"
+sed -e s/\$\{version\}/$VERSION/ descriptors.master.xml > descriptors.xml
+sed -e s/\$\{version\}/$VERSION/ descriptors-local.master.xml > descriptors-local.xml
+
 echo "clean"
 rm -rf $PROJECT
-
