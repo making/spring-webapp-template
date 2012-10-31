@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<descriptors>
+  <descriptor id="xxxx.yyyy.zzzz"
+	      name="Spring Template Web Application Project" kind="template"
+	      local="false"
+	      version="1.0.0" size="847000"
+	      url="file:////Users/maki/git/spring-webapp-template/template/spring-webapp-template-1.0.0.zip">
+    <description>
+      Creates a new Spring Template Web Application Project using Spring MVC and Spring Data
+    </description>
+  </descriptor>
+</descriptors>

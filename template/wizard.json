@@ -1,0 +1,30 @@
+{
+	"info" : {
+		"elements" : {
+			"element" :	[
+				{
+					"name" : "topLevelPackage",
+					"description" : "Please specify the top-level package e.g. com.mycompany.myapp",
+					"type" : "java.lang.String",
+					"page" : 0,
+					"required" : true,
+					"pattern" : "\\w+\\.\\w+(\\.\\w+)+",
+					"replaceKind" : "topLevelPackage"
+				}
+			]
+		},
+
+		"topLevelPackage" : "xxxx.yyyy.zzzz",
+
+		"projectName" : "projectName",
+
+		"pages" : {
+			"page" : [
+					{
+					"order" : 0,
+					"description" : "Project Settings"
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,12 @@
+<template>
+  <descriptor id="xxxx.yyyy.zzzz"
+	      name="Spring Template Web Application"
+	      kind="template"
+	      version="1.0.0">
+    <description>
+      Creates a new Spring Template Web Application Project using Spring MVC and Spring Data
+    </description>
+  </descriptor>
+  <project path="template.zip"/>
+  <json path="wizard.json"/>
+</template>
