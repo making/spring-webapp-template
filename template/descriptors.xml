@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <descriptors>
-  <descriptor id="xxxx.yyyy.zzzz.web"
-	      name="Spring Template Web Application Project using Spring MVC and Spring Data" kind="template"
+  <descriptor id="xxxx.yyyy.zzzz"
+	      name="Spring Template Web Application Project" kind="template"
 	      local="false"
 	      version="1.0.0" size="847000"
 	      url="https://github.com/making/spring-webapp-template/raw/master/template/spring-webapp-template-1.0.0.zip">
