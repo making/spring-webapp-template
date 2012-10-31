@@ -12,10 +12,10 @@ echo "zip template"
 mkdir -p $TMPLNAME
 
 cp -r $BASE/../src $TMPLNAME
-cp -r $BASE/../.settings $TMPLNAME
-cp -r $BASE/../target $TMPLNAME
-cp $BASE/../.project $TMPLNAME
-cp $BASE/../.classpath $TMPLNAME
+#cp -r $BASE/../.settings $TMPLNAME
+#cp -r $BASE/../target $TMPLNAME
+#cp $BASE/../.project $TMPLNAME
+#cp $BASE/../.classpath $TMPLNAME
 cp $BASE/../pom.xml $TMPLNAME
 zip -qr $TMPLNAME.zip $TMPLNAME/*
 rm -rf $TMPLNAME
