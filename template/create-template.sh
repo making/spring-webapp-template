@@ -1,5 +1,5 @@
 #!/bin/sh
-VERSION=1.0.0-`date +%Y%m%d%H%M%S`
+VERSION=1.0.0.`date +%Y%m%d%H%M%S`
 BASE=`pwd`
 PROJECT=spring-webapp-template-$VERSION
 TMPLNAME=template
