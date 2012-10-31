@@ -19,7 +19,7 @@
     </mvc:annotation-driven>
 
 
-    <context:component-scan base-package="am.ik.template.app" />
+    <context:component-scan base-package="xxxxxx.yyyyyy.zzzzzz.app" />
     <tx:annotation-driven />
 
     <mvc:resources mapping="/resources/**"

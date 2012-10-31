@@ -41,10 +41,10 @@
         <property name="jpaProperties" ref="jpaProperties" />
     </bean>
 
-    <context:component-scan base-package="xxxx.yyyy.zzzz.domain" />
+    <context:component-scan base-package="xxxxxx.yyyyyy.zzzzzz.domain" />
     <tx:annotation-driven />
 
-    <jpa:repositories base-package="xxxx.yyyy.zzzz.domain.repository" />
+    <jpa:repositories base-package="xxxxxx.yyyyyy.zzzzzz.domain.repository" />
 
     <bean id="passwordEncoder"
         class="org.springframework.security.authentication.encoding.PlaintextPasswordEncoder">
