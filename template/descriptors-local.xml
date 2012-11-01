@@ -3,8 +3,8 @@
   <descriptor id="xxxxxx.yyyyyy.zzzzzz"
 	      name="Spring Web Application Template Project" kind="template"
 	      local="false"
-	      version="1.0.0.20121102012254" size="415000"
-	      url="file:////Users/maki/git/spring-webapp-template/template/spring-webapp-template-1.0.0.20121102012254.zip">
+	      version="1.0.0.20121102013854" size="415000"
+	      url="file:////Users/maki/git/spring-webapp-template/template/spring-webapp-template-1.0.0.20121102013854.zip">
     <description>
       Creates a new Spring Web Application Template Project using Spring MVC and Spring Data
     </description>
