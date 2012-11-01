@@ -38,7 +38,7 @@ body {
     <tiles:insertAttribute name="body" />
     <hr>
     <p style="text-align: center; background: #e5eCf9;">Copyright
-      &copy; 2012 ik.am</p>
+      &copy; 2012 projectName</p>
   </div>
 </body>
 </html>

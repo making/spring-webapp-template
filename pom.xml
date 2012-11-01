@@ -668,8 +668,8 @@
         <org.hibernate.javax.persistence.version>1.0.1.Final</org.hibernate.javax.persistence.version>
         <org.slf4j.version>1.6.2</org.slf4j.version>
         <org.springframework.version>3.1.2.RELEASE</org.springframework.version>
-        <org.springframework.data.version>1.3.0.RELEASE</org.springframework.data.version>
-        <org.springframework.data.spring-data-jpa.version>1.1.0.RELEASE</org.springframework.data.spring-data-jpa.version>
+        <org.springframework.data.version>1.3.2.RELEASE</org.springframework.data.version>
+        <org.springframework.data.spring-data-jpa.version>1.1.2.RELEASE</org.springframework.data.spring-data-jpa.version>
         <org.springframework.security.version>3.1.2.RELEASE</org.springframework.security.version>
         <ch.qos.logback.version>1.0.6</ch.qos.logback.version>
         <org.apache.tiles.version>2.2.2</org.apache.tiles.version>
