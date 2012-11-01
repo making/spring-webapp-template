@@ -49,7 +49,7 @@
     </table>
 
     <div class="pagination">
-      <util:pagination page="${page}" />
+      <util:pagination page="${page}" query="name=${f:h(param.name)}" />
     </div>
   </div>
 

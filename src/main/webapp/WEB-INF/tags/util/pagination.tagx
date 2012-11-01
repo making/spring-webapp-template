@@ -7,6 +7,9 @@
     type="org.springframework.data.domain.Page" required="true"
     rtexprvalue="true" />
 
+  <jsp:directive.attribute name="query" type="java.lang.String"
+    required="false" rtexprvalue="true" />
+
   <c:set var="currentIndex" value="${page.number + 1}" />
   <c:choose>
     <c:when test="${currentIndex gt 5}">
@@ -25,10 +28,13 @@
     </c:otherwise>
   </c:choose>
 
-  <c:url var="firstUrl" value="?page.page=1" />
-  <c:url var="lastUrl" value="?page.page=${page.totalPages}" />
-  <c:url var="prevUrl" value="?page.page=${currentIndex - 1}" />
-  <c:url var="nextUrl" value="?page.page=${currentIndex + 1}" />
+  <c:url var="firstUrl" value="?page.page=1&amp;${query}" />
+  <c:url var="lastUrl"
+    value="?page.page=${page.totalPages}&amp;${query}" />
+  <c:url var="prevUrl"
+    value="?page.page=${currentIndex - 1}&amp;${query}" />
+  <c:url var="nextUrl"
+    value="?page.page=${currentIndex + 1}&amp;${query}" />
 
   <ul>
     <c:choose>
@@ -42,7 +48,7 @@
       </c:otherwise>
     </c:choose>
     <c:forEach var="i" begin="${beginIndex}" end="${endIndex}">
-      <c:url var="pageUrl" value="?page.page=${i}" />
+      <c:url var="pageUrl" value="?page.page=${i}&amp;${query}" />
       <c:choose>
         <c:when test="${i == currentIndex}">
           <li class="active"><a href="${pageUrl}"><c:out
