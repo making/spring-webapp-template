@@ -13,79 +13,88 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.authentication.encoding.PasswordEncoder;
 
 import xxxxxx.yyyyyy.zzzzzz.domain.model.User;
 import xxxxxx.yyyyyy.zzzzzz.domain.repository.user.UserRepository;
 import xxxxxx.yyyyyy.zzzzzz.domain.service.user.UserServiceImpl;
 
-
 public class UserServiceImplTest {
-    protected UserServiceImpl userService;
+	protected UserServiceImpl userService;
 
-    protected UserRepository userRepository;
+	protected UserRepository userRepository;
 
-    @Before
-    public void setUp() {
-        userService = new UserServiceImpl();
-        userRepository = mock(UserRepository.class);
-        userService.userRepository = userRepository;
-    }
+	protected PasswordEncoder passwordEncoder;
 
-    @Test
-    public void testSave() {
-        User user = new User();
+	@Before
+	public void setUp() {
+		userService = new UserServiceImpl();
+		userRepository = mock(UserRepository.class);
+		userService.userRepository = userRepository;
+		passwordEncoder = mock(PasswordEncoder.class);
+		userService.passwordEncoder = passwordEncoder;
+	}
 
-        userService.save(user);
+	@Test
+	public void testSave() {
+		User user = new User();
+		user.setName("foo");
 
-        ArgumentCaptor<User> userArg = ArgumentCaptor.forClass(User.class);
-        verify(userRepository, times(1)).save(userArg.capture());
-        User actual = userArg.getValue();
-        assertThat(actual, is(user));
-        assertThat(user.getCreatedAt(), is(notNullValue()));
-        assertThat(user.getUpdatedAt(), is(notNullValue()));
-    }
+		when(passwordEncoder.encodePassword("password", "foo")).thenReturn(
+				"xxxx");
 
-    @Test
-    public void testFindOne() {
-        User user = new User();
-        when(userRepository.findOne(100)).thenReturn(user);
+		userService.save(user, "password");
 
-        User result = userService.findOne(100);
+		ArgumentCaptor<User> userArg = ArgumentCaptor.forClass(User.class);
+		verify(userRepository, times(1)).save(userArg.capture());
+		User actual = userArg.getValue();
+		assertThat(actual, is(user));
+		assertThat(user.getCreatedAt(), is(notNullValue()));
+		assertThat(user.getUpdatedAt(), is(notNullValue()));
+		assertThat(user.getPassword(), is("xxxx"));
+	}
 
-        assertThat(result, is(user));
-    }
+	@Test
+	public void testFindOne() {
+		User user = new User();
+		when(userRepository.findOne(100)).thenReturn(user);
 
-    @Test
-    public void testFindAll() {
-        Pageable pageable = new PageRequest(1, 10);
-        Page<User> page = new PageImpl<User>(Arrays.asList(new User()));
-        when(userRepository.findAll(pageable)).thenReturn(page);
+		User result = userService.findOne(100);
 
-        Page<User> result = userService.findAll(pageable);
+		assertThat(result, is(user));
+	}
 
-        assertThat(result, is(page));
-    }
+	@Test
+	public void testFindAll() {
+		Pageable pageable = new PageRequest(1, 10);
+		Page<User> page = new PageImpl<User>(Arrays.asList(new User()));
+		when(userRepository.findAll(pageable)).thenReturn(page);
 
-    @Test
-    public void testFindByNameLike() {
-        Pageable pageable = new PageRequest(1, 10);
-        Page<User> page = new PageImpl<User>(Arrays.asList(new User()));
-        when(userRepository.findByNameLike("foo", pageable)).thenReturn(page);
+		Page<User> result = userService.findAll(pageable);
 
-        Page<User> result = userService.findByNameLike("foo", pageable);
+		assertThat(result, is(page));
+	}
 
-        assertThat(result, is(page));
-    }
+	@Test
+	public void testFindByNameLike() {
+		Pageable pageable = new PageRequest(1, 10);
+		Page<User> page = new PageImpl<User>(Arrays.asList(new User()));
+		when(userRepository.findByNameLike("foo", pageable)).thenReturn(page);
 
-    @Test
-    public void testDelete() {
-        User user = new User();
+		Page<User> result = userService.findByNameLike("foo", pageable);
 
-        userService.delete(user);
+		assertThat(result, is(page));
+	}
 
-        ArgumentCaptor<User> userArg = ArgumentCaptor.forClass(User.class);
-        verify(userRepository, times(1)).delete(userArg.capture());
-        assertThat(userArg.getValue(), is(user));
-    }
+	@Test
+	public void testDelete() {
+		User user = new User();
+
+		userService.delete(user);
+
+		ArgumentCaptor<User> userArg = ArgumentCaptor.forClass(User.class);
+		verify(userRepository, times(1)).delete(userArg.capture());
+		assertThat(userArg.getValue(), is(user));
+	}
 
 }
