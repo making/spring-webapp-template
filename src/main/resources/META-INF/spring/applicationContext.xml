@@ -21,26 +21,6 @@
 
 	<import resource="classpath:META-INF/spring/infrastructure.xml" />
 
-	<bean class="org.springframework.orm.jpa.JpaTransactionManager"
-		id="transactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean>
-
-	<bean id="jpaVendorAdapter"
-		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-		<property name="showSql" value="false" />
-		<property name="database" value="${database}" />
-	</bean>
-
-	<bean
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-		id="entityManagerFactory">
-		<property name="persistenceUnitName" value="persistenceUnit" />
-		<property name="dataSource" ref="dataSource" />
-		<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
-		<property name="jpaProperties" ref="jpaProperties" />
-	</bean>
-
 	<context:component-scan base-package="xxxxxx.yyyyyy.zzzzzz.domain" />
 	<tx:annotation-driven />
 
