@@ -4,8 +4,7 @@
       <a class="btn btn-navbar" data-toggle="collapse"
         data-target=".nav-collapse"> <span class="icon-bar"></span>
         <span class="icon-bar"></span> <span class="icon-bar"></span>
-      </a> <a class="brand" href="${pageContext.request.contextPath}">projectName
-        Application</a>
+      </a> <a class="brand" href="${pageContext.request.contextPath}">projectName</a>
       <div class="nav-collapse collapse">
         <ul class="nav">
           <li class="active"><a

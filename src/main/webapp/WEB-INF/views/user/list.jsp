@@ -9,7 +9,8 @@
 
     <div class="well">
       <a href="${pageContext.request.contextPath}/user/create?form"
-        class="btn btn-primary">New User</a>
+        class="btn btn-primary">New User</a><br>
+      <br>
       <form:form action="${pageContext.request.contextPath}/user/search"
         method="get" modelAttribute="userSearchForm" class="form-search">
         <form:input path="name" cssClass="input-medium search-query" />

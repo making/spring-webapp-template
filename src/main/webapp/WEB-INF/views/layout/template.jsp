@@ -12,7 +12,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width" />
 <link rel="stylesheet"
-  href="${pageContext.request.contextPath}/resources/vendor/bootstrap-2.0.4/css/bootstrap.css" />
+  href="${pageContext.request.contextPath}/resources/vendor/bootstrap-2.2.1/css/bootstrap.css" />
 <link rel="stylesheet"
   href="${pageContext.request.contextPath}/resources/vendor/jquery-ui-1.8.21/css/redmond/jquery-ui-1.8.21.custom.css" />
 <style type="text/css">
@@ -24,12 +24,12 @@ body {
 <script type="text/javascript"
   src="${pageContext.request.contextPath}/resources/vendor/js/jquery-1.7.2.js"></script>
 <script type="text/javascript">
-	
+    
 </script>
 <c:set var="titleKey">
   <tiles:insertAttribute name="title" ignore="true" />
 </c:set>
-<title><spring:message code="${titleKey}" text="template app" /></title>
+<title><spring:message code="${titleKey}" text="projectName" /></title>
 <tiles:insertAttribute name="header" />
 </head>
 <body>

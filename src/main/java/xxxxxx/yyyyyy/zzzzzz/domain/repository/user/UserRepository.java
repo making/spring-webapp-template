@@ -9,6 +9,8 @@ import org.springframework.data.repository.query.Param;
 import xxxxxx.yyyyyy.zzzzzz.domain.model.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
-    @Query("SELECT x FROM User x WHERE x.name LIKE :name")
+    @Query(value = "SELECT x FROM User x WHERE x.name LIKE :name ORDER BY x.id", 
+            countQuery = "SELECT COUNT(x) FROM User x WHERE x.name LIKE :name")
     Page<User> findByNameLike(@Param("name") String name, Pageable page);
 }
+

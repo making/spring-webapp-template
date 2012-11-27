@@ -4,7 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width" />
 <link rel="stylesheet"
-  href="${pageContext.request.contextPath}/resources/vendor/bootstrap-2.0.4/css/bootstrap.css" />
+  href="${pageContext.request.contextPath}/resources/vendor/bootstrap-2.2.1/css/bootstrap.css" />
 <style type="text/css">
 body {
   padding-top: 60px;
@@ -19,8 +19,13 @@ body {
     <div class="row">
       <div class="span12">
         <p class="alert alert-error">
-          [<c:choose><c:when test="${not empty exceptionCode}">${f:h(exceptionCode)}</c:when><c:otherwise>${f:h(param.exceptionCode)}</c:otherwise></c:choose>]
-          System Error...<br /> <a
+          [
+          <c:choose>
+            <c:when test="${not empty exceptionCode}">${f:h(exceptionCode)}</c:when>
+            <c:when test="${not empty param.exceptionCode}">${f:h(param.exceptionCode)}</c:when>
+            <c:otherwise>e.tm.9999</c:otherwise>
+          </c:choose>
+          ] System Error...<br /> <a
             href="${pageContext.request.contextPath}" class="btn">Go
             to TOP</a>
         </p>
