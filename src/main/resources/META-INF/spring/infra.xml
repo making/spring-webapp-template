@@ -6,5 +6,8 @@
 
     <jpa:repositories base-package="xxxxxx.yyyyyy.zzzzzz.domain.repository" />
 
+    <bean
+        class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
     <import resource="env.xml" />
 </beans>
