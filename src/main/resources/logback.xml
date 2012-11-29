@@ -50,6 +50,11 @@
         <level value="info" />
     </logger>
 
+    <logger
+        name="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <level value="info" />
+    </logger>
+
     <logger name="org.springframework.security.core.userdetails">
         <level value="debug" />
     </logger>

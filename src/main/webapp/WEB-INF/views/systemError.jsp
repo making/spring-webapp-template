@@ -19,13 +19,12 @@ body {
     <div class="row">
       <div class="span12">
         <p class="alert alert-error">
-          [
           <c:choose>
-            <c:when test="${not empty exceptionCode}">${f:h(exceptionCode)}</c:when>
-            <c:when test="${not empty param.exceptionCode}">${f:h(param.exceptionCode)}</c:when>
-            <c:otherwise>e.tm.9999</c:otherwise>
+            <c:when test="${not empty exceptionCode}">[${f:h(exceptionCode)}]</c:when>
+            <c:when test="${not empty param.exceptionCode}">[${f:h(param.exceptionCode)}]</c:when>
+            <c:otherwise>[e.tm.9999]</c:otherwise>
           </c:choose>
-          ] System Error...<br /> <a
+          System Error...<br /> <a
             href="${pageContext.request.contextPath}" class="btn">Go
             to TOP</a>
         </p>

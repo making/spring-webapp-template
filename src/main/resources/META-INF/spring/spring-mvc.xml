@@ -26,6 +26,8 @@
         location="/resources/,classpath:META-INF/resources/"
         cache-period="#{60 * 60}" />
 
+    <mvc:default-servlet-handler />
+
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**" />

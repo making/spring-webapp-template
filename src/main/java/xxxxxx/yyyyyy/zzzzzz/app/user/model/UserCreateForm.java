@@ -28,7 +28,7 @@ public class UserCreateForm implements Serializable {
 
     @NotNull
     @Past
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date birth;
 
     @NotNull

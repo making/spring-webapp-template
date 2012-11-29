@@ -22,7 +22,7 @@
         <form:label path="email" class="control-label">E-mail</form:label>
         <div class="controls">
           <form:input path="email" type="text" />
-          <form:errors path="email" cssClass="text-error" />
+          <form:errors path="email" cssClass="text-error" /> (* yyyy/MM/dd)
         </div>
       </div>
       <div class="control-group">

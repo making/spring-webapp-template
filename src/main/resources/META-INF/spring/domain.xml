@@ -6,9 +6,15 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <context:property-placeholder
+        location="classpath*:META-INF/spring/*.properties" />
 
-    <import resource="infra.xml" />
+    <bean id="passwordEncoder"
+        class="org.springframework.security.authentication.encoding.PlaintextPasswordEncoder">
+    </bean>
 
     <context:component-scan base-package="xxxxxx.yyyyyy.zzzzzz.domain" />
     <tx:annotation-driven />
+
+    <import resource="classpath:META-INF/spring/infra.xml" />
 </beans>
