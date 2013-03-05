@@ -2,7 +2,7 @@
   <div class="span12">
     <h2>New User</h2>
     <form:form action="${pageContext.request.contextPath}/user/create"
-      modelAttribute="userCreateForm" class="form-horizontal">
+      modelAttribute="userForm" class="form-horizontal">
       <div class="control-group">
         <form:label path="name" class="control-label">User Name</form:label>
         <div class="controls">

@@ -2,7 +2,7 @@
   <div class="span12">
     <h2>Delete User</h2>
     <form:form action="${pageContext.request.contextPath}/user/delete"
-      modelAttribute="userDeleteForm" class="form-horizontal">
+      modelAttribute="userForm" class="form-horizontal">
       <div class="control-group">
         <label class="control-label">User Name</label>
         <div class="controls">${f:h(user.name)}</div>

@@ -2,11 +2,11 @@
   <div class="span12">
     <h2>Update User</h2>
     <form:form action="${pageContext.request.contextPath}/user/update"
-      modelAttribute="userUpdateForm" class="form-horizontal">
+      modelAttribute="userForm" class="form-horizontal">
       <div class="control-group">
         <form:label path="id" class="control-label">User Id</form:label>
         <div class="controls">
-          ${f:h(userUpdateForm.id)}
+          ${f:h(userForm.id)}
           <form:input path="id" type="hidden" />
           <form:errors path="id" cssClass="text-error" />
         </div>
@@ -22,7 +22,8 @@
         <form:label path="email" class="control-label">E-mail</form:label>
         <div class="controls">
           <form:input path="email" type="text" />
-          <form:errors path="email" cssClass="text-error" /> (* yyyy/MM/dd)
+          <form:errors path="email" cssClass="text-error" />
+          (* yyyy/MM/dd)
         </div>
       </div>
       <div class="control-group">

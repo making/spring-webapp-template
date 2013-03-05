@@ -2,32 +2,32 @@
   <div class="span12">
     <h2>Update User</h2>
     <form:form action="${pageContext.request.contextPath}/user/update"
-      modelAttribute="userUpdateForm" class="form-horizontal">
+      modelAttribute="userForm" class="form-horizontal">
       <div class="control-group">
         <form:label path="id" class="control-label">User Id</form:label>
         <div class="controls">
-          ${f:h(userUpdateForm.id)}
+          ${f:h(userForm.id)}
           <form:input path="id" type="hidden" />
         </div>
       </div>
       <div class="control-group">
         <form:label path="name" class="control-label">User Name</form:label>
         <div class="controls">
-          ${f:h(userUpdateForm.name)}
+          ${f:h(userForm.name)}
           <form:input path="name" type="hidden" />
         </div>
       </div>
       <div class="control-group">
         <form:label path="email" class="control-label">E-mail</form:label>
         <div class="controls">
-          ${f:h(userUpdateForm.email)}
+          ${f:h(userForm.email)}
           <form:hidden path="email" />
         </div>
       </div>
       <div class="control-group">
         <form:label path="birth" class="control-label">User Birth</form:label>
         <div class="controls">
-          ${f:h(userUpdateForm.birth)}
+          ${f:h(userForm.birth)}
           <form:input path="birth" type="hidden" />
         </div>
       </div>

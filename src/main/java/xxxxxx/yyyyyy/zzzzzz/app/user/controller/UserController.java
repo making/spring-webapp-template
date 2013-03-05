@@ -1,21 +1,23 @@
 package xxxxxx.yyyyyy.zzzzzz.app.user.controller;
 
-import javax.validation.Valid;
+import javax.validation.groups.Default;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import xxxxxx.yyyyyy.zzzzzz.app.user.model.UserCreateForm;
-import xxxxxx.yyyyyy.zzzzzz.app.user.model.UserDeleteForm;
-import xxxxxx.yyyyyy.zzzzzz.app.user.model.UserUpdateForm;
+import xxxxxx.yyyyyy.zzzzzz.app.user.model.UserForm;
+import xxxxxx.yyyyyy.zzzzzz.app.user.model.UserForm.UserCreateGroup;
+import xxxxxx.yyyyyy.zzzzzz.app.user.model.UserForm.UserDeleteGroup;
+import xxxxxx.yyyyyy.zzzzzz.app.user.model.UserForm.UserUpdateGroup;
 import xxxxxx.yyyyyy.zzzzzz.domain.model.User;
 import xxxxxx.yyyyyy.zzzzzz.domain.service.user.UserService;
 
@@ -26,27 +28,18 @@ public class UserController {
     protected UserService userService;
 
     @ModelAttribute
-    public UserCreateForm setUpUserCreateForm() {
-        return new UserCreateForm();
-    }
-
-    @ModelAttribute
-    public UserUpdateForm setUpUserUpdateForm() {
-        return new UserUpdateForm();
-    }
-
-    @ModelAttribute
-    public UserDeleteForm setUpUserDeleteForm() {
-        return new UserDeleteForm();
+    public UserForm setUpUserForm() {
+        return new UserForm();
     }
 
     @RequestMapping(value = "create", params = "form")
-    public String createForm(UserCreateForm form) {
+    public String createForm(UserForm form) {
         return "user/createForm";
     }
 
     @RequestMapping(value = "create", params = "confirm", method = RequestMethod.POST)
-    public String createConfirm(@Valid UserCreateForm form, BindingResult result) {
+    public String createConfirm(@Validated({ Default.class,
+            UserCreateGroup.class }) UserForm form, BindingResult result) {
         if (result.hasErrors()) {
             return "user/createForm";
         }
@@ -54,7 +47,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
-    public String create(@Valid UserCreateForm form, BindingResult result) {
+    public String create(
+            @Validated({ Default.class, UserCreateGroup.class }) UserForm form,
+            BindingResult result) {
         if (result.hasErrors()) {
             return "user/createForm";
         }
@@ -72,8 +67,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "update", params = "form")
-    public String updateForm(@RequestParam("id") Integer id,
-            UserUpdateForm form, Model model) {
+    public String updateForm(@RequestParam("id") Integer id, UserForm form,
+            Model model) {
 
         if (form.getVersion() == null) {
             User user = userService.findOne(id);
@@ -85,7 +80,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "update", params = "confirm", method = RequestMethod.POST)
-    public String updateConfirm(@Valid UserUpdateForm form, BindingResult result) {
+    public String updateConfirm(@Validated({ Default.class,
+            UserUpdateGroup.class }) UserForm form, BindingResult result) {
         if (result.hasErrors()) {
             return "user/updateForm";
         }
@@ -93,7 +89,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "update", method = RequestMethod.POST)
-    public String update(@Valid UserUpdateForm form, BindingResult result) {
+    public String update(
+            @Validated({ Default.class, UserUpdateGroup.class }) UserForm form,
+            BindingResult result) {
         if (result.hasErrors()) {
             return "user/updateForm";
         }
@@ -111,8 +109,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "delete", params = "confirm")
-    public String deleteConfirm(@RequestParam("id") Integer id,
-            UserDeleteForm form, Model model) {
+    public String deleteConfirm(@RequestParam("id") Integer id, UserForm form,
+            Model model) {
 
         User user = userService.findOne(id);
         BeanUtils.copyProperties(user, form);
@@ -122,8 +120,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "delete", method = RequestMethod.POST)
-    public String delete(@Valid UserDeleteForm form, BindingResult result,
-            RedirectAttributes attr) {
+    public String delete(
+            @Validated({ Default.class, UserDeleteGroup.class }) UserForm form,
+            BindingResult result, RedirectAttributes attr) {
         if (result.hasErrors()) {
             attr.addFlashAttribute("errorMessage", "Illegal Access!");
             return "redirect:/user/list";

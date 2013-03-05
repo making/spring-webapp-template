@@ -5,46 +5,71 @@ import java.util.Date;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class UserUpdateForm implements Serializable {
+public class UserForm implements Serializable {
+    /**
+     * Validation group for create user
+     */
+    public static interface UserCreateGroup {
+    }
+
+    /**
+     * Validation group for update user
+     */
+    public static interface UserUpdateGroup {
+    }
+
+    /**
+     * Validation group for delete user
+     */
+    public static interface UserDeleteGroup {
+    }
 
     /**
      * serial version uid.
      */
     private static final long serialVersionUID = 1L;
 
-    @NotNull
+    @Null(groups = { UserCreateGroup.class })
+    @NotNull(groups = { UserUpdateGroup.class, UserDeleteGroup.class })
     @Min(0)
     private Integer id;
 
-    @NotNull
+    @Null(groups = { UserDeleteGroup.class })
+    @NotNull(groups = { UserUpdateGroup.class, UserCreateGroup.class })
     @Size(min = 1, max = 20)
     private String name;
 
-    @NotNull
+    @Null(groups = { UserDeleteGroup.class })
+    @NotNull(groups = { UserUpdateGroup.class, UserCreateGroup.class })
     @Size(min = 1, max = 50)
     @Email
     private String email;
 
-    @NotNull
+    @Null(groups = { UserDeleteGroup.class })
+    @NotNull(groups = { UserUpdateGroup.class, UserCreateGroup.class })
     @Past
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date birth;
 
-    @NotNull
+    @Null(groups = { UserDeleteGroup.class })
+    @NotNull(groups = { UserUpdateGroup.class, UserCreateGroup.class })
     @Size(min = 6, max = 30)
     private String password;
 
-    @NotNull
+    @Null(groups = { UserDeleteGroup.class })
+    @NotNull(groups = { UserUpdateGroup.class, UserCreateGroup.class })
     @Size(min = 6, max = 30)
     private String confirmPassword;
 
-    @NotNull
+    @Null(groups = { UserCreateGroup.class })
+    @NotNull(groups = { UserUpdateGroup.class, UserDeleteGroup.class })
     @Min(0)
     private Integer version;
 

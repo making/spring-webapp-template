@@ -2,25 +2,25 @@
   <div class="span12">
     <h2>New User</h2>
     <form:form action="${pageContext.request.contextPath}/user/create"
-      modelAttribute="userCreateForm" class="form-horizontal">
+      modelAttribute="userForm" class="form-horizontal">
       <div class="control-group">
         <form:label path="name" class="control-label">User Name</form:label>
         <div class="controls">
-          ${f:h(userCreateForm.name)}
+          ${f:h(userForm.name)}
           <form:hidden path="name" />
         </div>
       </div>
       <div class="control-group">
         <form:label path="email" class="control-label">E-mail</form:label>
         <div class="controls">
-          ${f:h(userCreateForm.email)}
+          ${f:h(userForm.email)}
           <form:hidden path="email" />
         </div>
       </div>
       <div class="control-group">
         <form:label path="birth" class="control-label">User Birth</form:label>
         <div class="controls">
-          ${f:h(userCreateForm.birth)}
+          ${f:h(userForm.birth)}
           <form:hidden path="birth" />
         </div>
       </div>
