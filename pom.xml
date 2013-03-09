@@ -580,10 +580,15 @@
             <version>${commons-dbcp.version}</version>
         </dependency>
         <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+        </dependency>
+        <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>${com.h2database.version}</version>
-            <scope>provided</scope>
+<!--             <scope>provided</scope> -->
         </dependency>
         <dependency>
             <groupId>org.jboss.spec.javax.servlet</groupId>

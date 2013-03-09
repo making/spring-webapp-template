@@ -2,8 +2,9 @@ package xxxxxx.yyyyyy.zzzzzz.domain.service.user;
 
 import java.util.Date;
 
+import javax.inject.Inject;
+
 import org.joda.time.DateTime;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
@@ -17,10 +18,10 @@ import xxxxxx.yyyyyy.zzzzzz.domain.repository.user.UserRepository;
 @Transactional
 public class UserServiceImpl implements UserService {
 
-    @Autowired
+    @Inject
     protected UserRepository userRepository;
 
-    @Autowired
+    @Inject
     protected PasswordEncoder passwordEncoder;
 
     @Override

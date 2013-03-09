@@ -1,8 +1,8 @@
 package xxxxxx.yyyyyy.zzzzzz.app.user.controller;
 
+import javax.inject.Inject;
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefaults;
@@ -19,11 +19,10 @@ import xxxxxx.yyyyyy.zzzzzz.app.user.model.UserSearchForm;
 import xxxxxx.yyyyyy.zzzzzz.domain.model.User;
 import xxxxxx.yyyyyy.zzzzzz.domain.service.user.UserService;
 
-
 @Controller
 @RequestMapping("user")
 public class UserSearchController {
-    @Autowired
+    @Inject
     protected UserService userService;
 
     @ModelAttribute
@@ -32,17 +31,15 @@ public class UserSearchController {
     }
 
     @RequestMapping("list")
-    public String list(@PageableDefaults
-    Pageable pageable, Model model) {
+    public String list(@PageableDefaults Pageable pageable, Model model) {
         Page<User> page = userService.findAll(pageable);
         model.addAttribute("page", page);
         return "user/list";
     }
 
     @RequestMapping("search")
-    public String search(@Valid
-    UserSearchForm form, BindingResult result, @PageableDefaults
-    Pageable pageable, Model model) {
+    public String search(@Valid UserSearchForm form, BindingResult result,
+            @PageableDefaults Pageable pageable, Model model) {
         if (result.hasErrors()) {
             return "user/list";
         }
@@ -55,15 +52,15 @@ public class UserSearchController {
     }
 
     @RequestMapping(params = "redirectToUpdate")
-    public String redirectToUpdateForm(@RequestParam("id")
-    Integer id, RedirectAttributes attr) {
+    public String redirectToUpdateForm(@RequestParam("id") Integer id,
+            RedirectAttributes attr) {
         attr.addAttribute("id", id);
         return "redirect:/user/update?form";
     }
 
     @RequestMapping(params = "redirectToDelete")
-    public String redirectToDeleteForm(@RequestParam("id")
-    Integer id, RedirectAttributes attr) {
+    public String redirectToDeleteForm(@RequestParam("id") Integer id,
+            RedirectAttributes attr) {
         attr.addAttribute("id", id);
         return "redirect:/user/delete?confirm";
     }
