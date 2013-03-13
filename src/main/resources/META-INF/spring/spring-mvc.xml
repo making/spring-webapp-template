@@ -72,6 +72,7 @@
         </property>
         <property name="defaultStatusCode" value="500" />
         <property name="defaultErrorView" value="systemError" />
+        <property name="warnLogCategory" value="xxxxxx.yyyyyy.zzzzzz.SimpleMappingExceptionResolver" />
     </bean>
 
 
