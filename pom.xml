@@ -9,13 +9,15 @@
     <build>
         <plugins>
             <plugin>
-                <artifactId>maven-eclipse-plugin</artifactId>
-                <version>${maven-eclipse-plugin.version}</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <wtpversion>2.0</wtpversion>
-                    <downloadSources>true</downloadSources>
+                    <includes>
+                        <include>**/*Test.java</include>
+                    </includes>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>com.google.code.maven-license-plugin</groupId>
                 <artifactId>maven-license-plugin</artifactId>
@@ -25,7 +27,7 @@
                     <includes>
                         <include>src/**/*.java</include>
                     </includes>
-                    <encoding>UTF-8</encoding>
+                    <encoding>${encoding}</encoding>
                     <headerDefinitions>
                         <headerDefinition>src/etc/header-definition.xml</headerDefinition>
                     </headerDefinitions>
@@ -33,18 +35,8 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${org.apache.maven.plugins.maven-checkstyle-plugin.version}</version>
-                <configuration>
-                    <enableRulesSummary>false</enableRulesSummary>
-                    <configLocation>${checkstyle.rule.xml}</configLocation>
-                    <consoleOutput>true</consoleOutput>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${org.apache.maven.plugins.version}</version>
+                <version>${org.apache.maven.plugins.maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>${java-version}</source>
                     <target>${java-version}</target>
@@ -53,6 +45,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
+                <version>${org.apache.maven.plugins.maven-dependency-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>install</id>
@@ -106,16 +99,8 @@
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>${org.apache.tomcat.maven.version}</version>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>${org.codehaus.mojo.version}</version>
                 <configuration>
-                    <inputEncoding>${encoding}</inputEncoding>
-                    <outputEncoding>${encoding}</outputEncoding>
-                    <includeFilterFile>${findbugs.includefilter.xml}</includeFilterFile>
-                    <xmlOutput>true</xmlOutput>
+                    <uriEncoding>UTF-8</uriEncoding>
                 </configuration>
             </plugin>
         </plugins>
@@ -134,34 +119,23 @@
             <name>Project Amateras Maven2 Repository</name>
             <url>http://amateras.sourceforge.jp/mvn/</url>
         </repository>
-        <repository>
-            <id>spring-milestone</id>
-            <name>Spring Maven MILESTONE Repository</name>
-            <url>http://maven.springframework.org/milestone</url>
-        </repository>
-        <repository>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>repository.jboss.org</id>
-            <url>http://repository.jboss.org/nexus/content/groups/public-jboss</url>
-        </repository>
     </repositories>
     <dependencies>
+        <!-- == Begin Google == -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${com.google.guava.version}</version>
             <exclusions>
                 <exclusion>
-                    <artifactId>jsr305</artifactId>
                     <groupId>com.google.code.findbugs</groupId>
+                    <artifactId>jsr305</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- == End Google == -->
+
+        <!-- == Begin Apache Commons == -->
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
@@ -179,30 +153,50 @@
             <version>${commons-collections.version}</version>
         </dependency>
         <dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
-            <version>${commons-dbcp.version}</version>
-        </dependency>
-        <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>${commons-io.version}</version>
         </dependency>
         <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>${commons-dbcp.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-pool</groupId>
+            <artifactId>commons-pool</artifactId>
+            <version>${commons-pool.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
             <version>${commons-lang.version}</version>
         </dependency>
+        <!-- == End Apache Commons == -->
+
+        <!-- == Begin Dozer== -->
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>${javax.servlet.version}</version>
+            <groupId>net.sf.dozer</groupId>
+            <artifactId>dozer</artifactId>
+            <version>${dozer.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>jcl-over-slf4j</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
-        <dependency>
-            <groupId>javax.transaction</groupId>
-            <artifactId>jta</artifactId>
-            <version>${javax.transaction.version}</version>
-        </dependency>
+        <!-- == End Dozer== -->
+
+        <!-- == Begin Joda-Time == -->
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
@@ -210,34 +204,44 @@
         </dependency>
         <dependency>
             <groupId>joda-time</groupId>
-            <artifactId>joda-time-hibernate</artifactId>
-            <version>${joda-time.joda-time-hibernate.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>joda-time</groupId>
             <artifactId>joda-time-jsptags</artifactId>
             <version>${joda-time.joda-time-jsptags.version}</version>
         </dependency>
         <dependency>
-            <groupId>jp.sf.amateras.functions</groupId>
-            <artifactId>functions</artifactId>
-            <version>${jp.sf.amateras.functions.version}</version>
+            <groupId>org.jadira.usertype</groupId>
+            <artifactId>usertype.core</artifactId>
+            <version>${jadira-usertype-core.version}</version>
             <exclusions>
                 <exclusion>
-                    <artifactId>jsonic</artifactId>
-                    <groupId>net.arnx</groupId>
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-entitymanager</artifactId>
                 </exclusion>
                 <exclusion>
-                    <artifactId>log4j</artifactId>
-                    <groupId>log4j</groupId>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.joda</groupId>
+                    <artifactId>joda-money</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- == End Joda-Time == -->
+
+        <!-- == Begin AspectJ == -->
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
-            <version>${org.aspectj.version}</version>
+            <version>${org.aspectj-version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${org.aspectj-version}</version>
+        </dependency>
+        <!-- == End AspectJ == -->
+
+        <!-- == Begin Jackson == -->
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-core-asl</artifactId>
@@ -248,6 +252,11 @@
             <artifactId>jackson-mapper-asl</artifactId>
             <version>${org.codehaus.jackson.version}</version>
         </dependency>
+        <!-- == End Jackson == -->
+
+
+        <!-- == Begin JPA == -->
+        <!-- Hibernate -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
@@ -268,30 +277,54 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>${org.hibernate.hibernate-validator.version}</version>
-        </dependency>
+        <!-- JPA API 2.0 -->
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.0-api</artifactId>
             <version>${org.hibernate.javax.persistence.version}</version>
         </dependency>
+        <!-- == End JPA == -->
+
+        <!-- == Begin BeanValidation == -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${org.hibernate.hibernate-validator.version}</version>
+        </dependency>
+        <!-- == End BeanValidation == -->
+
+        <!-- == Begin Logging == -->
+        <!-- SLF4J -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
-            <version>${org.slf4j.version}</version>
+            <version>${org.slf4j-version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>${org.slf4j.version}</version>
+            <version>${org.slf4j-version}</version>
         </dependency>
+        <!-- Logback -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${ch.qos.logback.version}</version>
+        </dependency>
+        <!-- Log4JDBC -->
+        <dependency>
+            <groupId>org.lazyluke</groupId>
+            <artifactId>log4jdbc-remix</artifactId>
+            <version>${org.lazyluke.version}</version>
+        </dependency>
+        <!-- == End Logging == -->
+
+        <!-- == Begin Spring == -->
+        <!-- Spring Framework -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
-            <version>${org.springframework.version}</version>
+            <version>${org.springframework-version}</version>
             <exclusions>
                 <exclusion>
                     <artifactId>commons-logging</artifactId>
@@ -302,7 +335,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aspects</artifactId>
-            <version>${org.springframework.version}</version>
+            <version>${org.springframework-version}</version>
             <exclusions>
                 <exclusion>
                     <artifactId>commons-logging</artifactId>
@@ -313,7 +346,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>${org.springframework.version}</version>
+            <version>${org.springframework-version}</version>
             <exclusions>
                 <exclusion>
                     <artifactId>commons-logging</artifactId>
@@ -324,7 +357,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
-            <version>${org.springframework.version}</version>
+            <version>${org.springframework-version}</version>
             <exclusions>
                 <exclusion>
                     <artifactId>commons-logging</artifactId>
@@ -335,7 +368,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
-            <version>${org.springframework.version}</version>
+            <version>${org.springframework-version}</version>
             <exclusions>
                 <exclusion>
                     <artifactId>commons-logging</artifactId>
@@ -343,10 +376,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- Spring MVC -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>${org.springframework.version}</version>
+            <version>${org.springframework-version}</version>
             <exclusions>
                 <exclusion>
                     <artifactId>commons-logging</artifactId>
@@ -354,14 +389,20 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- Spring Data -->
         <dependency>
             <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-commons-core</artifactId>
+            <artifactId>spring-data-commons</artifactId>
             <version>${org.springframework.data.version}</version>
             <exclusions>
                 <exclusion>
                     <artifactId>spring-beanss</artifactId>
                     <groupId>org.springframework</groupId>
+                </exclusion>
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit-dep</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -388,6 +429,8 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- Spring Security -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
@@ -544,11 +587,17 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- Spring Test -->
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${ch.qos.logback.version}</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${org.springframework-version}</version>
+            <scope>test</scope>
         </dependency>
+        <!-- == End Spring == -->
+
+        <!-- == Begin Tiles == -->
         <dependency>
             <groupId>org.apache.tiles</groupId>
             <artifactId>tiles-core</artifactId>
@@ -569,51 +618,27 @@
             <artifactId>tiles-jsp</artifactId>
             <version>${org.apache.tiles.version}</version>
         </dependency>
+        <!-- == End Tiles == -->
+
+        <!-- == Begin Other JavaEE/SE APIs == -->
         <dependency>
-            <groupId>org.lazyluke</groupId>
-            <artifactId>log4jdbc-remix</artifactId>
-            <version>${org.lazyluke.version}</version>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${javax.servlet.jstl.version}</version>
         </dependency>
         <dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
-            <version>${commons-dbcp.version}</version>
+            <groupId>javax.transaction</groupId>
+            <artifactId>jta</artifactId>
+            <version>${javax.transaction.version}</version>
         </dependency>
         <dependency>
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
-            <version>1</version>
+            <version>${javax.inject.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>${com.h2database.version}</version>
-<!--             <scope>provided</scope> -->
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.spec.javax.servlet</groupId>
-            <artifactId>jboss-servlet-api_3.0_spec</artifactId>
-            <version>${org.jboss.spec.javax.servlet.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.spec.javax.servlet.jsp</groupId>
-            <artifactId>jboss-jsp-api_2.2_spec</artifactId>
-            <version>${org.jboss.spec.javax.servlet.jsp.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>${postgresql.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib-nodep</artifactId>
-            <version>${cglib.version}</version>
-            <scope>test</scope>
-        </dependency>
+        <!-- == End Other JavaEE/SE APIs == -->
+
+        <!-- == Begin Unit Test == -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -626,18 +651,110 @@
             <version>${org.mockito.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- <dependency> -->
+        <!-- <groupId>org.seleniumhq.selenium</groupId> -->
+        <!-- <artifactId>selenium-java</artifactId> -->
+        <!-- <version>${selenium.version}</version> -->
+        <!-- <scope>test</scope> -->
+        <!-- </dependency> -->
+        <!-- == End Unit Test == -->
+
+        <!-- == Begin Amateras == -->
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>${org.springframework.version}</version>
-            <scope>test</scope>
+            <groupId>jp.sf.amateras.functions</groupId>
+            <artifactId>functions</artifactId>
+            <version>${jp.sf.amateras.functions.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jsonic</artifactId>
+                    <groupId>net.arnx</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>log4j</artifactId>
+                    <groupId>log4j</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
+        <!-- == End Amateras == -->
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${com.h2database.version}</version>
+            <!-- <scope>provided</scope> -->
+        </dependency>
+        <!-- == Begin Tomcat == -->
+        <!-- Servlet API 3.0 & JSP API 2.2 -->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-servlet-api</artifactId>
+            <version>${tomcat.api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jsp-api</artifactId>
+            <version>${tomcat.api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- == End Tomcat == -->
+
     </dependencies>
     <properties>
-        <encoding>UTF-8</encoding>
-        <java-version>1.6</java-version>
+        <!-- == Google == -->
+        <com.google.guava.version>14.0.1</com.google.guava.version>
+        <!-- == Apache Commons == -->
+        <commons-beanutils.version>1.8.3</commons-beanutils.version>
+        <commons-collections.version>3.2.1</commons-collections.version>
+        <commons-dbcp.version>1.2.2</commons-dbcp.version>
+        <commons-pool.version>1.6</commons-pool.version>
+        <commons-io.version>2.4</commons-io.version>
+        <commons-lang.version>3.1</commons-lang.version>
+        <!-- == Dozer== -->
+        <dozer.version>5.4.0</dozer.version>
+        <!-- == Joda-Time == -->
+        <joda-time.version>2.2</joda-time.version>
+        <joda-time.joda-time-jsptags.version>1.1.1</joda-time.joda-time-jsptags.version>
+        <jadira-usertype-core.version>3.0.0.GA</jadira-usertype-core.version>
+        <!-- == AspectJ == -->
+        <org.aspectj-version>1.7.2</org.aspectj-version>
+        <!-- == Jackson == -->
+        <org.codehaus.jackson.version>1.9.7</org.codehaus.jackson.version>
+        <!-- == JPA == -->
+        <org.hibernate.javax.persistence.version>1.0.1.Final</org.hibernate.javax.persistence.version>
+        <org.hibernate.version>4.2.2.Final</org.hibernate.version>
+        <!-- == BeanValidation == -->
+        <javax.validation.version>1.0.0.Final</javax.validation.version>
+        <org.hibernate.hibernate-validator.version>4.3.1.Final</org.hibernate.hibernate-validator.version>
+        <!-- == Logging == -->
+        <org.slf4j-version>1.7.5</org.slf4j-version>
+        <ch.qos.logback.version>1.0.13</ch.qos.logback.version>
+        <org.lazyluke.version>0.2.6</org.lazyluke.version>
+        <!-- == Spring Framework == -->
+        <org.springframework-version>3.2.3.RELEASE</org.springframework-version>
+        <org.springframework.data.spring-data-jpa.version>1.3.1.RELEASE</org.springframework.data.spring-data-jpa.version>
+        <org.springframework.data.version>1.5.1.RELEASE</org.springframework.data.version>
+        <org.springframework.security.version>3.1.4.RELEASE</org.springframework.security.version>
+        <!-- == Tiles == -->
+        <org.apache.tiles.version>2.2.2</org.apache.tiles.version>
+        <!-- == Amateras == -->
+        <jp.sf.amateras.functions.version>1.1.2</jp.sf.amateras.functions.version>
+        <!-- == JavaEE/SE APIs == -->
+        <javax.inject.version>1</javax.inject.version>
+        <javax.servlet.jstl.version>1.2</javax.servlet.jstl.version>
+        <javax.transaction.version>1.1</javax.transaction.version>
+        <tomcat.api.version>7.0.40</tomcat.api.version>
+        <!-- == database == -->
+        <com.h2database.version>1.3.156</com.h2database.version>
+        <!-- == JUnit == -->
+        <junit.version>4.7</junit.version>
+        <org.mockito.version>1.9.0</org.mockito.version>
+        <selenium.version>2.32.0</selenium.version>
+        <!-- == Maven Plugins == -->
         <maven-eclipse-plugin.version>2.6</maven-eclipse-plugin.version>
-        <maven-jxr-plugin.version>2.1</maven-jxr-plugin.version>
+        <maven-jxr-plugin.version>2.3</maven-jxr-plugin.version>
+        <net.sourceforge.nekohtml.version>1.9.15</net.sourceforge.nekohtml.version>
+        <org.apache.maven.archetype.version>2.2</org.apache.maven.archetype.version>
         <org.apache.maven.plugins.maven-checkstyle-plugin.version>2.9.1</org.apache.maven.plugins.maven-checkstyle-plugin.version>
         <org.apache.maven.plugins.maven-compiler-plugin.version>2.5.1</org.apache.maven.plugins.maven-compiler-plugin.version>
         <org.apache.maven.plugins.maven-dependency-plugin.version>2.5</org.apache.maven.plugins.maven-dependency-plugin.version>
@@ -649,42 +766,17 @@
         <org.apache.maven.plugins.maven-surefire-report-plugin.version>2.4.3</org.apache.maven.plugins.maven-surefire-report-plugin.version>
         <org.apache.maven.plugins.maven-war-plugin.version>2.2</org.apache.maven.plugins.maven-war-plugin.version>
         <org.apache.maven.plugins.version>2.5</org.apache.maven.plugins.version>
+        <org.apache.maven.plugins.version>2.9</org.apache.maven.plugins.version>
         <org.apache.maven.wagon.version>1.0-beta-7</org.apache.maven.wagon.version>
-        <org.apache.tomcat.maven.version>2.0-SNAPSHOT</org.apache.tomcat.maven.version>
+        <org.apache.tomcat.maven.version>2.1</org.apache.tomcat.maven.version>
         <org.codehaus.mojo.emma-maven-plugin.version>1.0-alpha-3</org.codehaus.mojo.emma-maven-plugin.version>
         <org.codehaus.mojo.version>2.5</org.codehaus.mojo.version>
-        <com.google.guava.version>11.0</com.google.guava.version>
+        <!-- == Other Properties== -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <archetype.test.skip>true</archetype.test.skip>
+        <com.google.code.findbugs.version>1.3.9</com.google.code.findbugs.version>
         <com.google.code.maven-license-plugin.version>1.4.0</com.google.code.maven-license-plugin.version>
-        <commons-beanutils.version>1.8.0</commons-beanutils.version>
-        <commons-collections.version>3.2.1</commons-collections.version>
-        <commons-dbcp.version>1.2.2</commons-dbcp.version>
-        <commons-io.version>2.4</commons-io.version>
-        <commons-lang.version>2.6</commons-lang.version>
-        <javax.servlet.version>1.2</javax.servlet.version>
-        <javax.transaction.version>1.1</javax.transaction.version>
-        <joda-time.version>2.1</joda-time.version>
-        <joda-time.joda-time-hibernate.version>1.3</joda-time.joda-time-hibernate.version>
-        <joda-time.joda-time-jsptags.version>1.1.1</joda-time.joda-time-jsptags.version>
-        <jp.sf.amateras.functions.version>1.1.2</jp.sf.amateras.functions.version>
-        <org.aspectj.version>1.6.12</org.aspectj.version>
-        <org.codehaus.jackson.version>1.9.7</org.codehaus.jackson.version>
-        <org.hibernate.version>4.1.4.Final</org.hibernate.version>
-        <org.hibernate.hibernate-validator.version>4.3.0.Final</org.hibernate.hibernate-validator.version>
-        <org.hibernate.javax.persistence.version>1.0.1.Final</org.hibernate.javax.persistence.version>
-        <org.slf4j.version>1.6.2</org.slf4j.version>
-        <org.springframework.version>3.1.2.RELEASE</org.springframework.version>
-        <org.springframework.data.version>1.3.2.RELEASE</org.springframework.data.version>
-        <org.springframework.data.spring-data-jpa.version>1.1.2.RELEASE</org.springframework.data.spring-data-jpa.version>
-        <org.springframework.security.version>3.1.2.RELEASE</org.springframework.security.version>
-        <ch.qos.logback.version>1.0.6</ch.qos.logback.version>
-        <org.apache.tiles.version>2.2.2</org.apache.tiles.version>
-        <org.lazyluke.version>0.2.6</org.lazyluke.version>
-        <com.h2database.version>1.3.156</com.h2database.version>
-        <org.jboss.spec.javax.servlet.version>1.0.2.Final</org.jboss.spec.javax.servlet.version>
-        <org.jboss.spec.javax.servlet.jsp.version>1.0.1.Final</org.jboss.spec.javax.servlet.jsp.version>
-        <postgresql.version>8.3-606.jdbc3</postgresql.version>
-        <cglib.version>2.2.2</cglib.version>
-        <junit.version>4.7</junit.version>
-        <org.mockito.version>1.9.0</org.mockito.version>
+        <encoding>UTF-8</encoding>
+        <java-version>1.6</java-version>
     </properties>
 </project>

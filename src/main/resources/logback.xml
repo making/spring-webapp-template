@@ -1,10 +1,8 @@
 <!DOCTYPE logback>
-<configuration DEBUG="false">
+<configuration>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <Target>System.out</Target>
         <encoder>
-            <Pattern><![CDATA[%d{HH:mm:ss} [%thread] [%-5level] [%-48logger{48}] - %msg%n]]>
-            </Pattern>
+            <pattern><![CDATA[%d{yyyy-MM-dd HH:mm:ss} [%thread] [%-5level] [%-48logger{48}] - %msg%n]]></pattern>
         </encoder>
     </appender>
 
@@ -19,7 +17,7 @@
             <MaxHistory>2</MaxHistory>
         </rollingPolicy>
         <encoder>
-            <Pattern><![CDATA[%d{HH:mm:ss} [%thread] [%-5level] [%-48logger{48}] - %msg%n]]>
+            <Pattern><![CDATA[%d{yyyy-MM-dd HH:mm:ss} [%thread] [%-5level] [%-48logger{48}] - %msg%n]]>
             </Pattern>
         </encoder>
     </appender>

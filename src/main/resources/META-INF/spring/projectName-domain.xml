@@ -16,5 +16,5 @@
     <context:component-scan base-package="xxxxxx.yyyyyy.zzzzzz.domain" />
     <tx:annotation-driven />
 
-    <import resource="classpath:META-INF/spring/infra.xml" />
+    <import resource="classpath:META-INF/spring/projectName-infra.xml" />
 </beans>

@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(readOnly = true)
     public Page<User> findByNameLike(String name, Pageable pageable) {
-        String query = name + "%"; // TODO escape
+        String query = name; // TODO escape
         Page<User> page = userRepository.findByNameLike(query, pageable);
         return page;
     }

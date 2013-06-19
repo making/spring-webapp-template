@@ -14,14 +14,14 @@
         <form:label path="email" class="control-label">E-mail</form:label>
         <div class="controls">
           <form:input path="email" type="text" />
-          <form:errors path="email" cssClass="text-error" /> (* yyyy/MM/dd)
+          <form:errors path="email" cssClass="text-error" />
         </div>
       </div>
       <div class="control-group">
         <form:label path="birth" class="control-label">User Birth</form:label>
         <div class="controls">
           <form:input path="birth" type="text" />
-          <form:errors path="birth" cssClass="text-error" />
+          <form:errors path="birth" cssClass="text-error" /> (* yyyy/MM/dd)
         </div>
       </div>
       <div class="control-group">

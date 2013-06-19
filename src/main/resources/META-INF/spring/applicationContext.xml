@@ -18,5 +18,5 @@
         </property>
     </bean>
 
-    <import resource="classpath:META-INF/spring/domain.xml" />
+    <import resource="classpath:META-INF/spring/projectName-domain.xml" />
 </beans>

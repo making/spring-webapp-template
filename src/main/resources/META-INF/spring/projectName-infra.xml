@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+    <import resource="projectName-env.xml" />
+
+    <jpa:repositories base-package="xxxxxx.yyyyyy.zzzzzz.domain.repository" />
+
+    <bean
+        class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+    <bean class="org.springframework.orm.jpa.JpaTransactionManager"
+        id="transactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+
+    <bean id="jpaVendorAdapter"
+        class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <property name="showSql" value="false" />
+        <property name="database" value="${database}" />
+    </bean>
+
+    <bean
+        class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+        id="entityManagerFactory">
+        <property name="packagesToScan" value="xxxxxx.yyyyyy.zzzzzz.domain.model" />
+        <property name="dataSource" ref="dataSource" />
+        <property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
+        <property name="jpaPropertyMap">
+            <util:map>
+                <entry key="hibernate.hbm2ddl.auto" value="none" />
+                <entry key="hibernate.ejb.naming_strategy"
+                    value="org.hibernate.cfg.ImprovedNamingStrategy" />
+                <entry key="hibernate.connection.charSet" value="UTF-8" />
+                <entry key="hibernate.show_sql" value="false" />
+                <entry key="hibernate.format_sql" value="false" />
+                <entry key="hibernate.use_sql_comments" value="true" />
+                <entry key="hibernate.jdbc.batch_size" value="30" />
+                <entry key="hibernate.jdbc.fetch_size" value="100" />
+            </util:map>
+        </property>
+    </bean>
+
+</beans>

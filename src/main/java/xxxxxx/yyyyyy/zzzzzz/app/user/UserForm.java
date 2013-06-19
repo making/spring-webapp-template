@@ -1,4 +1,4 @@
-package xxxxxx.yyyyyy.zzzzzz.app.user.model;
+package xxxxxx.yyyyyy.zzzzzz.app.user;
 
 import java.io.Serializable;
 import java.util.Date;

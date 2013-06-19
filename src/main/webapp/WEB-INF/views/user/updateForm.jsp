@@ -23,7 +23,6 @@
         <div class="controls">
           <form:input path="email" type="text" />
           <form:errors path="email" cssClass="text-error" />
-          (* yyyy/MM/dd)
         </div>
       </div>
       <div class="control-group">
@@ -31,6 +30,7 @@
         <div class="controls">
           <form:input path="birth" type="text" />
           <form:errors path="birth" cssClass="text-error" />
+          (* yyyy/MM/dd)
         </div>
       </div>
       <div class="control-group">
