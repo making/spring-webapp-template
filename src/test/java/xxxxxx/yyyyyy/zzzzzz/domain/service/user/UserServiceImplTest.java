@@ -79,7 +79,7 @@ public class UserServiceImplTest {
     public void testFindByNameLike() {
         Pageable pageable = new PageRequest(1, 10);
         Page<User> page = new PageImpl<User>(Arrays.asList(new User()));
-        when(userRepository.findByNameLike("foo%", pageable)).thenReturn(page);
+        when(userRepository.findByNameLike("foo", pageable)).thenReturn(page);
 
         Page<User> result = userService.findByNameLike("foo", pageable);
 
