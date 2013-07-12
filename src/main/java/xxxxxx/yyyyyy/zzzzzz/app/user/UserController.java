@@ -3,7 +3,7 @@ package xxxxxx.yyyyyy.zzzzzz.app.user;
 import javax.inject.Inject;
 import javax.validation.groups.Default;
 
-import org.springframework.beans.BeanUtils;
+import org.dozer.Mapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,12 +26,17 @@ public class UserController {
     @Inject
     protected UserService userService;
 
+    @Inject
+    protected Mapper beanMapper;
+
     @ModelAttribute
     public UserForm setUpUserForm() {
         return new UserForm();
     }
 
-    @RequestMapping(value = "create", params = "form")
+    // create flow
+
+    @RequestMapping(value = "create", params = "form", method = RequestMethod.GET)
     public String createForm(UserForm form) {
         return "user/createForm";
     }
@@ -45,6 +50,14 @@ public class UserController {
         return "user/createConfirm";
     }
 
+    @RequestMapping(value = "create", params = "redo", method = RequestMethod.POST)
+    public String createRedo(UserForm form) {
+        // reset password
+        form.setPassword("");
+        form.setConfirmPassword("");
+        return "user/createForm";
+    }
+
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public String create(
             @Validated({ Default.class, UserCreateGroup.class }) UserForm form,
@@ -53,27 +66,30 @@ public class UserController {
             return "user/createForm";
         }
 
-        User user = new User();
-        BeanUtils.copyProperties(form, user);
+        User user = beanMapper.map(form, User.class);
         userService.save(user, form.getPassword());
 
         return "redirect:/user/create?complete";
     }
 
-    @RequestMapping(value = "create", params = "complete")
+    @RequestMapping(value = "create", params = "complete", method = RequestMethod.GET)
     public String createComplete() {
         return "user/createComplete";
     }
 
-    @RequestMapping(value = "update", params = "form")
+    // update flow
+
+    @RequestMapping(value = "update", params = "form", method = RequestMethod.GET)
     public String updateForm(@RequestParam("id") Integer id, UserForm form,
             Model model) {
 
-        if (form.getVersion() == null) {
-            User user = userService.findOne(id);
-            BeanUtils.copyProperties(user, form, new String[] { "password" });
-            model.addAttribute(user);
-        }
+        User user = userService.findOne(id);
+        beanMapper.map(user, form);
+
+        // reset password
+        form.setPassword("");
+
+        model.addAttribute(user);
 
         return "user/updateForm";
     }
@@ -87,6 +103,17 @@ public class UserController {
         return "user/updateConfirm";
     }
 
+    @RequestMapping(value = "update", params = "redo", method = RequestMethod.POST)
+    public String updateRedo(@RequestParam("id") Integer id, UserForm form,
+            Model model) {
+
+        // reset password
+        form.setPassword("");
+        form.setConfirmPassword("");
+
+        return "user/updateForm";
+    }
+
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public String update(
             @Validated({ Default.class, UserUpdateGroup.class }) UserForm form,
@@ -96,23 +123,25 @@ public class UserController {
         }
 
         User user = userService.findOne(form.getId());
-        BeanUtils.copyProperties(form, user);
+        beanMapper.map(form, user);
         userService.save(user, form.getPassword());
 
         return "redirect:/user/update?complete";
     }
 
-    @RequestMapping(value = "update", params = "complete")
+    @RequestMapping(value = "update", params = "complete", method = RequestMethod.GET)
     public String updateComplete() {
         return "user/updateComplete";
     }
 
-    @RequestMapping(value = "delete", params = "confirm")
+    // delete flow
+
+    @RequestMapping(value = "delete", params = "confirm", method = RequestMethod.GET)
     public String deleteConfirm(@RequestParam("id") Integer id, UserForm form,
             Model model) {
 
         User user = userService.findOne(id);
-        BeanUtils.copyProperties(user, form);
+        beanMapper.map(user, form);
 
         model.addAttribute(user);
         return "user/deleteConfirm";
@@ -128,7 +157,7 @@ public class UserController {
         }
 
         User user = userService.findOne(form.getId());
-        BeanUtils.copyProperties(form, user);
+        beanMapper.map(form, user);
 
         userService.delete(user);
         return "redirect:/user/delete?complete";

@@ -41,7 +41,7 @@
       <div class="form-actions">
         <input type="submit" class="btn btn-primary" name="create"
           value="Create" /> <input type="submit" class="btn"
-          name="form" value="Back to Form" />
+          name="redo" value="Back to Form" />
       </div>
     </form:form>
   </div>

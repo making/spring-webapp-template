@@ -114,13 +114,13 @@ public class UserRepositoryTest {
     }
 
     // @Test(expected = OptimisticLockingFailureException.class) TODO
-    @Test
-    public void testUpdate01() {
-        Integer id = (Integer) jdbcTemplate.queryForList(
-                "SELECT USER_ID FROM T_USER", Integer.class).get(0);
-        User user = userRepository.findOne(id);
-        assertThat(user, is(notNullValue()));
-        user.setVersion(2);
-        userRepository.saveAndFlush(user);
-    }
+    //    @Test
+    //    public void testUpdate01() {
+    //        Integer id = (Integer) jdbcTemplate.queryForList(
+    //                "SELECT USER_ID FROM T_USER", Integer.class).get(0);
+    //        User user = userRepository.findOne(id);
+    //        assertThat(user, is(notNullValue()));
+    //        user.setVersion(2);
+    //        userRepository.saveAndFlush(user);
+    //    }
 }

@@ -7,10 +7,11 @@ import javax.inject.Inject;
 import org.joda.time.DateTime;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.authentication.encoding.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import xxxxxx.yyyyyy.zzzzzz.domain.common.exception.ResourceNotFoundException;
 import xxxxxx.yyyyyy.zzzzzz.domain.model.User;
 import xxxxxx.yyyyyy.zzzzzz.domain.repository.user.UserRepository;
 
@@ -26,13 +27,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void save(User user, String rawPassword) {
-        String password = passwordEncoder.encodePassword(rawPassword, user
-                .getName());
+        String password = passwordEncoder.encode(rawPassword);
         user.setPassword(password);
+
         Date now = new DateTime().toDate();
         if (user.getCreatedAt() == null) {
             user.setCreatedAt(now);
         }
+
         user.setUpdatedAt(now);
         userRepository.save(user);
     }
@@ -41,6 +43,10 @@ public class UserServiceImpl implements UserService {
     @Transactional(readOnly = true)
     public User findOne(Integer id) {
         User user = userRepository.findOne(id);
+        if (user == null) {
+            throw new ResourceNotFoundException("User [id=" + id
+                    + "] is not found.");
+        }
         return user;
     }
 

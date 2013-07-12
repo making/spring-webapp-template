@@ -14,7 +14,6 @@ import javax.persistence.Version;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "T_USER")
@@ -38,7 +37,6 @@ public class User implements Serializable {
 
     @Column(name = "USER_BIRTH", nullable = false)
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date birth;
 
     @Column(name = "USER_PASSWORD", nullable = false, length = 64)

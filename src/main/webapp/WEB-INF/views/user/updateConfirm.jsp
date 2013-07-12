@@ -50,7 +50,7 @@
         <form:hidden path="version" />
         <input type="submit" class="btn btn-primary" name="update"
           value="Update" /> <input type="submit" class="btn"
-          name="form" value="Back to Form" />
+          name="redo" value="Back to Form" />
       </div>
     </form:form>
   </div>
