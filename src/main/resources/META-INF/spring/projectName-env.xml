@@ -24,9 +24,7 @@
     <!-- <jee:jndi-lookup id="dataSource" jndi-name="jdbc/dataSource"></jee:jndi-lookup> -->
 
     <jdbc:initialize-database>
-        <jdbc:script location="classpath:/schema.sql"
-            execution="INIT" />
-        <jdbc:script location="classpath:/initial-data.sql"
-            execution="INIT" />
+        <jdbc:script location="classpath:/database/${database}-schema.sql" />
+        <jdbc:script location="classpath:/database/${database}-dataload.sql" />
     </jdbc:initialize-database>
 </beans>
