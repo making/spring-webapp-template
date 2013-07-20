@@ -6,5 +6,24 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- <sec:http auto-config="true"></sec:http> -->
+    <sec:http auto-config="true" use-expressions="true">
+        <sec:form-login login-page="/login.jsp" />
+        <sec:intercept-url pattern="/login.jsp"
+            access="permitAll" />
+        <sec:intercept-url pattern="/resources/**"
+            access="permitAll" />
+        <sec:intercept-url pattern="/**"
+            access="hasRole('ROLE_ADMIN')" />
+    </sec:http>
+
+    <sec:authentication-manager>
+        <sec:authentication-provider>
+            <sec:password-encoder ref="passwordEncoder" />
+            <sec:user-service>
+                <sec:user name="demo"
+                    password="55cee8b13eb652217f6bc7dcd32eb9c649bcef39ebb66e2db2bf1498bc37a167db45723fef3d3036"
+                    authorities="ROLE_ADMIN" />
+            </sec:user-service>
+        </sec:authentication-provider>
+    </sec:authentication-manager>
 </beans>

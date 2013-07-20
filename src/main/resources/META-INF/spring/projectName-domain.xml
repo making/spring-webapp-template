@@ -9,10 +9,6 @@
     <context:property-placeholder
         location="classpath*:META-INF/spring/*.properties" />
 
-    <bean id="passwordEncoder"
-        class="org.springframework.security.crypto.password.StandardPasswordEncoder">
-    </bean>
-
     <context:component-scan base-package="xxxxxx.yyyyyy.zzzzzz.domain" />
     <tx:annotation-driven />
 

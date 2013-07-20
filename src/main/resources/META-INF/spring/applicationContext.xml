@@ -20,6 +20,9 @@
 
     <import resource="classpath:META-INF/spring/projectName-domain.xml" />
 
+    <bean id="passwordEncoder"
+        class="org.springframework.security.crypto.password.StandardPasswordEncoder">
+    </bean>
 
     <bean class="org.dozer.spring.DozerBeanMapperFactoryBean">
         <property name="mappingFiles"
