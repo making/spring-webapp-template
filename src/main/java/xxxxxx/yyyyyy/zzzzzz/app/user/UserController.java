@@ -168,7 +168,7 @@ public class UserController {
         return "user/deleteComplete";
     }
 
-    @RequestMapping(value = { "cretate", "update", "delete" }, params = "redirectToList")
+    @RequestMapping(value = { "create", "update", "delete" }, params = "redirectToList")
     public String redirectToList() {
         return "redirect:/user/list";
     }
