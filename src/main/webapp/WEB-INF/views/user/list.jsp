@@ -12,9 +12,9 @@
         class="btn btn-primary">New User</a><br>
       <br>
       <form:form action="${pageContext.request.contextPath}/user/search"
-        method="get" modelAttribute="userSearchForm" class="form-search">
-        <form:input path="name" cssClass="input-medium search-query" />
-        <input type="submit" value="Search" class="btn" />
+        method="get" modelAttribute="userSearchForm" class="form-inline my-inline">
+        <form:input path="name" />
+        <input type="submit" value="Search" class="btn btn-default" />
       </form:form>
     </div>
 
@@ -39,7 +39,7 @@
                 action="${pageContext.request.contextPath}/user"
                 class="form-inline">
                 <input type="hidden" name="id" value="${f:h(user.id)}" />
-                <input type="submit" class="btn" name="redirectToUpdate"
+                <input type="submit" class="btn btn-default" name="redirectToUpdate"
                   value="Update" />
                 <input type="submit" class="btn btn-danger"
                   name="redirectToDelete" value="Delete" />
@@ -49,9 +49,7 @@
       </tbody>
     </table>
 
-    <div class="pagination">
-      <util:pagination page="${page}" query="name=${f:h(param.name)}" />
-    </div>
+    <util:pagination page="${page}" query="name=${f:h(param.name)}" />
   </div>
 
 </div>

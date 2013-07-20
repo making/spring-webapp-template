@@ -40,7 +40,7 @@
       </div>
       <div class="form-actions">
         <input type="submit" class="btn btn-primary" name="create"
-          value="Create" /> <input type="submit" class="btn"
+          value="Create" /> <input type="submit" class="btn btn-default"
           name="redo" value="Back to Form" />
       </div>
     </form:form>

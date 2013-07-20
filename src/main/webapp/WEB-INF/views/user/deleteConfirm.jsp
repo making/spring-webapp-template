@@ -23,7 +23,7 @@
         <form:hidden path="id" value="${f:h(user.id)}" />
         <form:hidden path="version" value="${f:h(user.version)}" />
         <input type="submit" class="btn btn-danger" name="delete"
-          value="Delete" /> <input type="submit" class="btn"
+          value="Delete" /> <input type="submit" class="btn btn-default"
           name="redirectToList" value="Back to List" />
       </div>
     </form:form>

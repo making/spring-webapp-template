@@ -36,7 +36,7 @@
   <c:url var="nextUrl"
     value="?page.page=${currentIndex + 1}&amp;${query}" />
 
-  <ul>
+  <ul class="pagination">
     <c:choose>
       <c:when test="${page.number == 0}">
         <li class="disabled"><a href="#">&lt;&lt;</a></li>
