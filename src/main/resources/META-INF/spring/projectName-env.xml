@@ -6,7 +6,7 @@
 		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+    <bean id="realDataSource" class="org.apache.commons.dbcp.BasicDataSource"
         destroy-method="close">
         <property name="driverClassName" value="${database.driverClassName}" />
         <property name="url" value="${database.url}" />
@@ -21,9 +21,13 @@
         <property name="defaultAutoCommit" value="false" />
     </bean>
 
+    <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+        <constructor-arg name="realDataSource" ref="realDataSource" />
+    </bean>
+
     <!-- <jee:jndi-lookup id="dataSource" jndi-name="jdbc/dataSource"></jee:jndi-lookup> -->
 
-    <jdbc:initialize-database>
+    <jdbc:initialize-database data-source="dataSource" ignore-failures="ALL">
         <jdbc:script location="classpath:/database/${database}-schema.sql" />
         <jdbc:script location="classpath:/database/${database}-dataload.sql" />
     </jdbc:initialize-database>
