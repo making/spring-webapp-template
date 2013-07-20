@@ -21,7 +21,7 @@
         <form:label path="birth" class="control-label">User Birth</form:label>
         <div class="controls">
           <form:input path="birth" type="text" />
-          <form:errors path="birth" cssClass="text-danger" /> (* yyyy/MM/dd)
+          <form:errors path="birth" cssClass="text-danger" /> (* yyyy-MM-dd)
         </div>
       </div>
       <div class="control-group">

@@ -30,7 +30,7 @@
         <div class="controls">
           <form:input path="birth" type="text" />
           <form:errors path="birth" cssClass="text-danger" />
-          (* yyyy/MM/dd)
+          (* yyyy-MM-dd)
         </div>
       </div>
       <div class="control-group">

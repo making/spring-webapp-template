@@ -55,7 +55,7 @@ public class UserForm implements Serializable {
     @Null(groups = { UserDeleteGroup.class })
     @NotNull(groups = { UserUpdateGroup.class, UserCreateGroup.class })
     @Past
-    @DateTimeFormat(pattern = "yyyy/MM/dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birth;
 
     @Null(groups = { UserDeleteGroup.class })

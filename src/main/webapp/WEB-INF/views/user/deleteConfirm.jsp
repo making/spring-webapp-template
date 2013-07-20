@@ -13,7 +13,9 @@
       </div>
       <div class="control-group">
         <label class="control-label">User Birth</label>
-        <div class="controls">${f:h(user.birth)}</div>
+        <div class="controls">
+          <fmt:formatDate pattern="yyyy-MM-dd" value="${user.birth}"/>
+        </div>
       </div>
       <div class="control-group">
         <label class="control-label">User Password</label>

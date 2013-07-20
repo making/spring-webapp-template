@@ -20,7 +20,7 @@
       <div class="control-group">
         <form:label path="birth" class="control-label">User Birth</form:label>
         <div class="controls">
-          ${f:h(userForm.birth)}
+          <fmt:formatDate pattern="yyyy-MM-dd" value="${userForm.birth}"/>
           <form:hidden path="birth" />
         </div>
       </div>
