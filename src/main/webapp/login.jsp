@@ -6,7 +6,7 @@
 <body onload='document.f.j_username.focus();'>
     <h3>Login with Username and Password</h3>
     <form name='f'
-        action='/spring-webapp-template/j_spring_security_check'
+        action='${pageContext.request.contextPath}/j_spring_security_check'
         method='POST'>
         <table>
             <tr>

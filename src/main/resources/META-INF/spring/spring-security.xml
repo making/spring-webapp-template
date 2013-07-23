@@ -20,8 +20,9 @@
         <sec:authentication-provider>
             <sec:password-encoder ref="passwordEncoder" />
             <sec:user-service>
+                <!-- Password is "demo" for demo user. -->
                 <sec:user name="demo"
-                    password="55cee8b13eb652217f6bc7dcd32eb9c649bcef39ebb66e2db2bf1498bc37a167db45723fef3d3036"
+                    password="$2a$10$oxSJl.keBwxmsMLkcT9lPeAIxfNTPNQxpeywMrF7A3kVszwUTqfTK"
                     authorities="ROLE_ADMIN" />
             </sec:user-service>
         </sec:authentication-provider>
