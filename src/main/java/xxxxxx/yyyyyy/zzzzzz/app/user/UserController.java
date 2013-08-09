@@ -84,10 +84,7 @@ public class UserController {
             Model model) {
 
         User user = userService.findOne(id);
-        beanMapper.map(user, form);
-
-        // reset password
-        form.setPassword("");
+        beanMapper.map(user, form, "userExcludePassword");
 
         model.addAttribute(user);
 
