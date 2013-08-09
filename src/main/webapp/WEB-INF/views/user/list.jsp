@@ -2,7 +2,7 @@
 <div class="row">
   <h2>User List</h2>
   ${request}
-  <div class="span12">
+  <div class="col-lg-12">
     <c:if test="${not empty errorMessage}">
       <div class="alert alert-error">${f:h(errorMessage)}</div>
     </c:if>
@@ -13,7 +13,7 @@
       <br>
       <form:form action="${pageContext.request.contextPath}/user/search"
         method="get" modelAttribute="userSearchForm" class="form-inline my-inline">
-        <form:input path="name" />
+        <form:input path="name" class="form-control" />
         <input type="submit" value="Search" class="btn btn-default" />
       </form:form>
     </div>
