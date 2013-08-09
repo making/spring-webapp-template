@@ -136,15 +136,15 @@ public class UserController {
 
     // delete flow
 
-    @RequestMapping(value = "delete", params = "confirm", method = RequestMethod.GET)
-    public String deleteConfirm(@RequestParam("id") Integer id, UserForm form,
+    @RequestMapping(value = "delete", params = "form", method = RequestMethod.GET)
+    public String deleteForm(@RequestParam("id") Integer id, UserForm form,
             Model model) {
 
         User user = userService.findOne(id);
         beanMapper.map(user, form);
 
         model.addAttribute(user);
-        return "user/deleteConfirm";
+        return "user/deleteForm";
     }
 
     @RequestMapping(value = "delete", method = RequestMethod.POST)

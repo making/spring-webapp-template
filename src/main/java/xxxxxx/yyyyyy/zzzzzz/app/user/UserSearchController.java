@@ -61,6 +61,6 @@ public class UserSearchController {
     public String redirectToDeleteForm(@RequestParam("id") Integer id,
             RedirectAttributes attr) {
         attr.addAttribute("id", id);
-        return "redirect:/user/delete?confirm";
+        return "redirect:/user/delete?form";
     }
 }
