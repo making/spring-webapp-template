@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+          
+  <mapping map-id="userExcludePassword"> 
+    <class-a>xxxxxx.yyyyyy.zzzzzz.domain.model.User</class-a>
+    <class-b>xxxxxx.yyyyyy.zzzzzz.app.user.UserForm</class-b>
+    <field-exclude>
+        <a>password</a>
+        <b>password</b>
+     </field-exclude>
+  </mapping>  
+
+</mappings> 
