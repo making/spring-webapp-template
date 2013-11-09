@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-lg-12">
+  <div class="col-sm-12">
     <p class="alert alert-success">
       Deleted Successfully!<br> <a
         href="${pageContext.request.contextPath}/user/list" class="btn btn-default">Back

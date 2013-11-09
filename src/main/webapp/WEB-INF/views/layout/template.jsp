@@ -12,9 +12,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width" />
 <link rel="stylesheet"
-    href="${pageContext.request.contextPath}/resources/vendor/bootstrap-3.0.0-rc1/css/bootstrap.css" />
+    href="${pageContext.request.contextPath}/resources/vendor/bootstrap/dist/css/bootstrap.css" />
 <link rel="stylesheet"
-    href="${pageContext.request.contextPath}/resources/vendor/jquery-ui-1.8.21/css/redmond/jquery-ui-1.8.21.custom.css" />
+    href="${pageContext.request.contextPath}/resources/vendor/bootstrap/dist/css/bootstrap-theme.css" />
 <style type="text/css">
 body {
     padding-top: 60px;
@@ -30,9 +30,9 @@ body {
 }
 </style>
 <script type="text/javascript"
-    src="${pageContext.request.contextPath}/resources/vendor/js/jquery-1.7.2.min.js"></script>
+    src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript"
-    src="${pageContext.request.contextPath}/resources/vendor/bootstrap-3.0.0-rc1/js/bootstrap.min.js"></script>
+    src="${pageContext.request.contextPath}/resources/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     
 </script>
